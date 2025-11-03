@@ -1,13 +1,27 @@
 {
   "name": "avaliacao",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "studio": "npx prisma studio",
+    "start": "node server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jvsilvagomes/Gerenciamento_Projetos.git"
+  },
+  "keywords": [
+    "avaliacao"
+  ],
+  "author": "João",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jvsilvagomes/Gerenciamento_Projetos/issues"
+  },
+  "homepage": "https://github.com/Jvsilvagomes/Gerenciamento_Projetos#readme",
   "description": "",
   "dependencies": {
     "@prisma/client": "^6.18.0",
