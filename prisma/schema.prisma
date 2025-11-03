@@ -12,9 +12,10 @@ model Projeto {
   id         Int      @id @default(autoincrement())
   nome       String?
   descricao  String   @unique
-  prazo      Int
+  orcamento  Int
   gerente    String?
-  dataInicio Int
+  prazo      DateTime
+  dataInicio DateTime 
   ativo Boolean @default(true)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
