@@ -26,3 +26,29 @@ export const listarTodos = async (req, res) => {
         });
     }
 }
+
+export const listarUm = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const projeto = await projetoModel.findById(id);
+
+        if (!projeto) {
+            return res.status(404).json({
+                erro: 'Projeto não encontrado',
+                message: 'Verifique se o id do projeto existe',
+                id: id
+            })
+        }
+
+        res.status(200).json({
+            mensagem: 'Projeto encontrado!',
+            projeto
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            erro: 'Erro na busca do projeto por id',
+            detalhes: error.message
+        })
+    }
+}

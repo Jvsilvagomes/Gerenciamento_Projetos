@@ -6,3 +6,9 @@ export const findAll = async () => {
         orderBy: { nome: 'asc' }
     });
 }
+
+export const findById = async (id) => {
+    return await prisma.projeto.findUnique({
+        where: { id: Number(id) }
+    });
+}
