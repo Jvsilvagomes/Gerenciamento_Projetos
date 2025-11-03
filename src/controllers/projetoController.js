@@ -111,3 +111,32 @@ export const apagar = async (req, res) => {
         })
     }
 }
+
+export const atualizar = async (req, res) => {
+    try {
+        const id = parseInt(req.params.id);
+        const dados = req.body;
+
+        const projetoExiste = await projetoModel.findById(id);
+
+        if (!projetoExiste) {
+            return res.status(404).json({
+                erro: 'Projeto não encontrado com esse id',
+                id: id
+            })
+        }
+
+        const projetoAtualizado = await projetoModel.update(id, dados);
+
+        res.status(200).json({
+            mensagem: 'Projeto atualizado com sucesso',
+            projeto: projetoAtualizado
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            erro: 'Erro ao atualizar projeto',
+            detalhes: error.message
+        })
+    }
+}

@@ -7,6 +7,6 @@ router.get("/", projetoController.listarTodos);
 router.get("/:id", projetoController.listarUm);
 router.post("/", projetoController.criar);
 router.delete("/:id", projetoController.apagar);
-
+router.put("/:id", projetoController.atualizar);
 
 export default router;
