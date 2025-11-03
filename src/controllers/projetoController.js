@@ -52,3 +52,34 @@ export const listarUm = async (req, res) => {
         })
     }
 }
+
+export const criar = async (req, res) => {
+    try {
+        const { nome, descricao, prazo, gerente, dataInicio, ativo, orcamento } = req.body
+
+        const dado = req.body
+        const camposObrigatorios = ['nome', 'gerente', 'descricao', 'prazo', 'orcamento', 'dataInicio'];
+
+        const faltando = camposObrigatorios.filter(campo => !dado[campo]);
+
+        if (faltando.length > 0) {
+            return res.status(400).json({
+                erro: `Os seguintes campos são obrigatórios: ${faltando.join(', ')}.`
+            });
+        }
+        
+        const novoProjeto = await projetoModel.create(dado);
+
+        res.status(201).json({
+            mensagem: 'Novo projeto criado com sucesso!',
+            projeto: novoProjeto
+        })
+
+
+    } catch (error) {
+        res.status(500).json({
+            erro: 'Erro ao criar projeto',
+            detalhes: error.message
+        })
+    }
+}

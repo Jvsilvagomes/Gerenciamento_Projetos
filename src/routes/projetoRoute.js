@@ -5,5 +5,7 @@ const router = Router();
 
 router.get("/", projetoController.listarTodos);
 router.get("/:id", projetoController.listarUm);
+router.post("/", projetoController.criar);
+
 
 export default router;

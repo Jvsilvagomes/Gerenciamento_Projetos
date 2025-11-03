@@ -12,3 +12,16 @@ export const findById = async (id) => {
         where: { id: Number(id) }
     });
 }
+
+export const create = async (data) => {
+    return await prisma.bruxo.create({
+        data: {
+            nome: data.nome,
+            descricao: data.descricao,
+            gerente: data.gerente,
+            dataInicio: data.dataInicio,
+            prazo: data.prazo,
+            orcamento: data.orcamento
+        }
+    });
+}
