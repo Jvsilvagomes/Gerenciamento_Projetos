@@ -83,3 +83,31 @@ export const criar = async (req, res) => {
         })
     }
 }
+
+export const apagar = async (req, res) => {
+    try {
+        const id = parseInt(req.params.id);
+
+        const projetoExiste = await projetoModel.findById(id);
+
+        if (!projetoExiste) {
+            return res.status(404).json({
+                erro: 'Projeto não encontrado com esse id',
+                id: id
+            })
+        }
+
+        await projetoModel.deleteProjeto(id)
+
+        res.status(200).json({
+            mensagem: 'Projeto removido com sucesso',
+            projetoRemovido: projetoExiste
+        })
+
+    } catch (error) {
+        res.status(500).json({
+            erro: 'Erro ao apagar este projeto!',
+            detalhes: error.message
+        })
+    }
+}
