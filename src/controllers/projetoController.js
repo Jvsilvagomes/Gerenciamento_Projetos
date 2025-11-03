@@ -18,6 +18,9 @@ export const listarTodos = async (req, res) => {
             message: "Projetos",
             projetos
         });
+
+      //  let resultado = projetos
+
     } catch (error) {
         res.status(500).json({
             erro: "Erro interno do servidor!",
@@ -68,6 +71,18 @@ export const criar = async (req, res) => {
             });
         }
         
+        // Regra de negocio
+        if ( !dataInicio < prazo){
+            return res.status(400).json({
+                message:  "A data de inicio deve ser anterior ao prazo"
+            })
+        }
+        if (!orcamento > 0 ){
+            return res.status(400).json({
+                message: "O orçamento deve ser maior que 0"
+            })
+        }
+
         const novoProjeto = await projetoModel.create(dado);
 
         res.status(201).json({
